@@ -1,0 +1,106 @@
+.hero {
+  padding-block: clamp(48px, 9vw, 110px) clamp(64px, 10vw, 120px);
+  border-bottom: 2px solid var(--ink);
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.8fr);
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+
+.hero-name {
+  font-weight: 800;
+  font-size: clamp(3.6rem, 2rem + 10vw, 9.2rem);
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+}
+.hero-name .line { display: block; }
+.hero-name .line-2 { padding-left: clamp(0px, 4vw, 56px); }
+
+/* One orchestrated moment on load */
+.hero-name .line { animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.hero-name .line-2 { animation-delay: 0.12s; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: none; }
+}
+
+.hero-role {
+  margin-top: clamp(24px, 3vw, 36px);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.2rem, 1rem + 1vw, 1.7rem);
+  letter-spacing: -0.01em;
+}
+
+.hero-intro {
+  margin-top: 14px;
+  max-width: 52ch;
+  color: var(--muted);
+}
+
+.hero-actions {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Sticky note */
+.note {
+  position: relative;
+  background: var(--sun);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  box-shadow: 8px 8px 0 var(--ink);
+  padding: 40px 28px 30px;
+  transform: rotate(2.2deg);
+  justify-self: center;
+  width: 100%;
+  max-width: 360px;
+}
+
+.note-pin {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 26px; height: 26px;
+  margin-left: -13px;
+  background: var(--violet);
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  box-shadow: 2px 3px 0 var(--ink);
+}
+
+.note-title {
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.note-list li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+.note-list li + li { margin-top: 12px; padding-top: 12px; border-top: 1.5px dashed rgba(27, 23, 64, 0.45); }
+.note-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.42em;
+  width: 12px; height: 12px;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  background: var(--paper);
+}
+.note-list li + li::before { top: calc(0.42em + 12px); }
+.note-list li:last-child::before { background: transparent; border-style: dashed; }
+
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .note { justify-self: start; max-width: 380px; margin-top: 8px; }
+}

@@ -1,0 +1,98 @@
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(246, 243, 255, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--ink);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-h);
+}
+
+.nav-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.nav-links ul { display: flex; gap: clamp(18px, 3vw, 36px); }
+
+.nav-links a {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.98rem;
+  text-decoration: none;
+  padding-block: 6px;
+  background: linear-gradient(var(--sun), var(--sun)) no-repeat 0 100% / 0 6px;
+  transition: background-size 0.2s ease;
+}
+.nav-links a:hover,
+.nav-links a.is-active { background-size: 100% 6px; }
+
+.nav-toggle { display: none; }
+
+@media (max-width: 720px) {
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px; height: 46px;
+    background: var(--sun);
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    cursor: pointer;
+    color: var(--ink);
+  }
+
+  .bars, .bars::before, .bars::after {
+    display: block;
+    width: 20px; height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  .bars { position: relative; }
+  .bars::before, .bars::after { content: ""; position: absolute; left: 0; }
+  .bars::before { top: -6px; }
+  .bars::after { top: 6px; }
+  .is-open .bars { background: transparent; }
+  .is-open .bars::before { transform: translateY(6px) rotate(45deg); }
+  .is-open .bars::after { transform: translateY(-6px) rotate(-45deg); }
+
+  .nav-links {
+    position: absolute;
+    left: 0; right: 0;
+    top: 100%;
+    background: var(--paper);
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease;
+    overflow: hidden;
+  }
+  .is-open .nav-links { grid-template-rows: 1fr; border-bottom: 2px solid var(--ink); }
+  .nav-links ul { display: block; min-height: 0; overflow: hidden; }
+  .nav-links li + li { border-top: 1px solid var(--line); }
+  .nav-links a {
+    display: block;
+    padding: 16px var(--gutter);
+    font-size: 1.1rem;
+    background-image: none;
+  }
+  .nav-links a.is-active { background: var(--sun); }
+  .nav:not(.is-open) .nav-links a { visibility: hidden; }
+}

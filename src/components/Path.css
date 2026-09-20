@@ -1,0 +1,40 @@
+.timeline { position: relative; max-width: 860px; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 11px; top: 8px; bottom: 8px;
+  border-left: 2px solid var(--ink);
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 8px 24px;
+  padding: 0 0 clamp(30px, 4vw, 46px) 48px;
+}
+.step:last-child { padding-bottom: 0; }
+
+.step-dot {
+  position: absolute;
+  left: 0; top: 4px;
+  width: 24px; height: 24px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--violet);
+}
+.step-current .step-dot { background: var(--sun); box-shadow: 0 0 0 5px rgba(255, 201, 60, 0.4); }
+.step-next .step-dot { background: var(--paper); border-style: dashed; }
+
+.step-when {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--violet);
+  padding-top: 2px;
+}
+.step-body h3 { font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.7rem); font-weight: 700; margin-bottom: 8px; }
+.step-body p { color: var(--muted); max-width: 52ch; }
+
+@media (max-width: 640px) {
+  .step { grid-template-columns: 1fr; padding-left: 44px; }
+}

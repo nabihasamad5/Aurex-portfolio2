@@ -1,0 +1,35 @@
+.contact {
+  background: var(--violet);
+  color: #fff;
+}
+.contact :focus-visible { outline-color: var(--sun); }
+.contact .section-title { max-width: 14ch; }
+.contact-text { max-width: 50ch; margin-bottom: 34px; }
+
+.contact-actions { display: flex; flex-wrap: wrap; gap: 16px; }
+
+.btn-sun {
+  background: var(--sun);
+  color: var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.btn-sun:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+.btn-sun:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border-color: #fff;
+}
+.btn-outline:hover { background: #fff; color: var(--ink); }
+
+.contact-mail {
+  margin-top: 22px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 520px) {
+  .contact-actions .btn { width: 100%; }
+}
